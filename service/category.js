@@ -1,21 +1,12 @@
 const CategoryModel = require('../models/category.js')
 
 class CategoryService {
-  async list() {
-    try {
-      let data = await CategoryModel.list()
-      return data
-    } catch (e) {
-      return e
-    }
+  async getCategoryByQuery(query = {}) {
+    return CategoryModel.find(query).exec()
   }
-  async add(category) {
-    try {
-      let data = await CategoryModel.add(category)
-      return data
-    } catch (e) {
-      return e
-    }
+  async newAndSave(category) {
+    let c = new CategoryModel(category)
+    return c.save()
   }
 }
 

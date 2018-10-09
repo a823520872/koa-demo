@@ -12,15 +12,19 @@ const CategorySchema = new Schema({
   }
 })
 
-const Category = mongoose.model('category', CategorySchema)
+CategorySchema.index({ name: 1 }, { unique: true })
 
-class CategoryModel extends DBHelper {
-  list() {
-    return super.find(Category, {}, { __v: 0})
-  }
-  add(category) {
-    return super.add(Category, category)
-  }
-}
+module.exports = mongoose.model('category', CategorySchema)
 
-module.exports = new CategoryModel
+// const Category = mongoose.model('category', CategorySchema)
+
+// class CategoryModel extends DBHelper {
+//   list() {
+//     return super.find(Category, {}, { __v: 0})
+//   }
+//   add(category) {
+//     return super.add(Category, category)
+//   }
+// }
+
+// module.exports = new CategoryModel

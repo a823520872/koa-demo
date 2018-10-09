@@ -2,7 +2,7 @@ const CategoryService = require('../service/category.js')
 
 class CategoryController {
   async list(ctx) {
-    let data = await CategoryService.list()
+    let data = await CategoryService.getCategoryByQuery()
     ctx.body = JSON.stringify(data instanceof Error ? {
       success: false,
       msg: data.toString()
@@ -13,7 +13,7 @@ class CategoryController {
     })
   }
   async add(ctx) {
-    let data = await CategoryService.add(ctx.query || ctx.request.body)
+    let data = await CategoryService.newAndSave(ctx.query || ctx.request.body)
     ctx.body = JSON.stringify(data instanceof Error ? {
       success: false,
       msg: data.toString()
