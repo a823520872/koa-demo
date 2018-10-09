@@ -8,10 +8,7 @@ const app = new Koa()
 app.use(bodyParser())
 app.use(static(path.join(__dirname, 'public')))
 
-const router = require('./route/index.js')
-// let router = new Router()
-
-// router.use('/', index.routes(), index.allowedMethods())
+const router = require('./routers/index')
 
 app.use(router.routes()).use(router.allowedMethods())
 
