@@ -1,11 +1,11 @@
 const router = require('koa-router')()
 
-const home = require('./home')
-const api = require('./api')
-const add = require('./add')
+const web = require('./web')
+// const api = require('./api')
+// const admin = require('./admin')
 
-router.use('/', home.routes(), home.allowedMethods())
-router.use('/api', api.routes(), api.allowedMethods())
-router.use('/add', add.routes(), add.allowedMethods())
+router.use('/', web.routes(), web.allowedMethods())
+// router.use('/admin', admin.routes(), admin.allowedMethods())
+// router.use('/api', api.routes(), api.allowedMethods())
 
 module.exports = router

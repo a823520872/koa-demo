@@ -4,9 +4,21 @@ const Router = require('koa-router')
 const bodyParser = require('koa-bodyparser')
 const static = require('koa-static')
 const app = new Koa()
+const render = require('koa-ejs')
+
+const resolve = (dir) => {
+  return path.join(__dirname, dir)
+}
 
 app.use(bodyParser())
-app.use(static(path.join(__dirname, 'public')))
+app.use(static(resolve('public')))
+render(app, {
+  root: resolve('views'),
+  layout: 'template',
+  viewExt: 'html',
+  cache: false,
+  debug: true
+})
 
 const router = require('./routers/index')
 
